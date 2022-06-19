@@ -8,7 +8,7 @@ import java.util.Date;
 public class Vehicle {
     private String plateNumber;
     private PicoYplaca restrictions;
-    private String dateFormat = "yyyy/MM/dd";
+    private String DATEFORMAT = "yyyy/MM/dd";
 
     /**
      * Class constructor
@@ -42,7 +42,8 @@ public class Vehicle {
         int minutes = Integer.parseInt(time.substring(time.indexOf(':') + 1));
         if (hours < 0 || hours > 23 || minutes < 0 || minutes > 59)
             throw new IllegalArgumentException();
-        Date dateIns = new SimpleDateFormat("yyyy/MM/dd").parse(date);
+
+        Date dateIns = new SimpleDateFormat(DATEFORMAT).parse(date);
         Calendar calendarInstance = Calendar.getInstance();
         calendarInstance.setTime(dateIns);
         int dayNumber = calendarInstance.get(Calendar.DAY_OF_WEEK) - 1;
@@ -50,7 +51,7 @@ public class Vehicle {
         int[] daysRestricted = this.restrictions.getRestrictionByLastDigit(lastDigit);
         // check if the day is within the days restricted
         if (Arrays.stream(daysRestricted).anyMatch(x -> x == dayNumber)) {
-            // check if the hour is within the periods if yes it should not drive otherwise it can drive
+            // check if the hour is within the periods restricted
             if (this.restrictions.isRestrictedAtGivenHour(time))
                 return false;
         }
@@ -97,10 +98,10 @@ public class Vehicle {
      * @author Cristian Brazales
      */
     private boolean isDateValid(String dateStr) {
-        DateFormat sdf = new SimpleDateFormat(this.dateFormat);
-        sdf.setLenient(false);
+        DateFormat date = new SimpleDateFormat(this.DATEFORMAT);
+        date.setLenient(false);
         try {
-            sdf.parse(dateStr);
+            date.parse(dateStr);
         } catch (ParseException e) {
             return false;
         }

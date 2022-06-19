@@ -4,17 +4,13 @@ public class PicoYplaca {
     /**
      * Map last digit plate to day of restriction , DAY_OF_THE_WEEK(Monday is 1,
      * Tuesday is 2, etc)
-     * <p>
      * Example of restrictions array: [5,1,2, ...]
-     * <p>
      * [0]=[5] Last digit 0 can't drive on Friday
-     * <p>
      * [1]=[1] Last digit 1 can't drive on Monday
-     * <p>
      * [2]=[2] Last digit 2 can't drive on Monday ...
      */
     private int[][] restrictionsByPlate;
-    private String[][] hourPeriod;
+
     private int[][] timeIntervals;
 
     /**
@@ -26,7 +22,6 @@ public class PicoYplaca {
      */
     public PicoYplaca(int[][] restrictionsByPlate, String[][] hourPeriod) throws ParseException {
         this.restrictionsByPlate = restrictionsByPlate;
-        this.hourPeriod = hourPeriod;
         this.timeIntervals = new int[hourPeriod.length][2];
         for (int i = 0; i < hourPeriod.length; i++) {
 
@@ -38,10 +33,10 @@ public class PicoYplaca {
     }
 
     /**
-     * returns the days a vehicle should not drive
+     * returns the DAYS_OF_THE_WEEK a vehicle should not drive
      *
      * @param lastDigit (int)
-     * @return Array of days the car cannot drive
+     * @return int [] , list of days the car cannot drive
      * @author Cristian Brazales
      */
     public int[] getRestrictionByLastDigit(int lastDigit) {
