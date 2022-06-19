@@ -40,7 +40,7 @@ public class Vehicle {
     private boolean validatePlateNumber(String Plate) {
         // TODO:Impletement function
 
-        return false;
+        return true;
 
     }
 }
