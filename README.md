@@ -55,7 +55,8 @@ For detailed information on the builds and tests
 https://app.travis-ci.com/github/CristianBrazales/CodeAssessmentPicoYPlaca
 
 #Travis CI run
-
+![alt text](https://github.com/CristianBrazales/CodeAssessmentPicoYPlaca/blob/main/src/main/resources/screenshot/ci.png)
 #Testing coverage
-
+![alt text](https://github.com/CristianBrazales/CodeAssessmentPicoYPlaca/blob/main/src/main/resources/screenshot/testCoverage.png)
 #Tests passed
+![alt text](https://github.com/CristianBrazales/CodeAssessmentPicoYPlaca/blob/main/src/main/resources/screenshot/testsPassed.png)
