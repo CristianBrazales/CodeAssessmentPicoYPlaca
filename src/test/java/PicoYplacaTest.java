@@ -1,6 +1,10 @@
 import junit.framework.TestCase;
 import org.junit.Test;
 
+import java.text.ParseException;
+
+import static org.junit.Assert.assertThrows;
+
 /*
  * Base rules:
  * Restriction
@@ -31,8 +35,11 @@ public class PicoYplacaTest extends TestCase {
     Vehicle carEndingNine = new Vehicle("TUC879", restrictions);
     Vehicle carEndingCero = new Vehicle("PCT870", restrictions);
 
+    public PicoYplacaTest() throws ParseException {
+    }
+
     @Test
-    public void testMonday() {
+    public void testMonday() throws ParseException {
         // Monday Restricted ending 1 and 2
         // Testing restriction day and time interval 1
         assertFalse("should fail can not drive at time ", carEndingOne.canDriveAt("2022/06/20", "8:00"));
@@ -45,7 +52,7 @@ public class PicoYplacaTest extends TestCase {
     }
 
     @Test
-    public void testTuesday() {
+    public void testTuesday() throws ParseException {
         // Tuesday Restricted ending 3 and 4
         // Testing restriction day and time interval 1
         assertFalse("should fail can not drive at time ", carEndingThree.canDriveAt("2022/06/21", "9:00"));
@@ -58,7 +65,7 @@ public class PicoYplacaTest extends TestCase {
     }
 
     @Test
-    public void testWednesday() {
+    public void testWednesday() throws ParseException {
         // Wednesday Restricted ending 5 and 6
         // Testing restriction day and time interval 1
         assertFalse("should fail can not drive at time ", carEndingFive.canDriveAt("2022/06/22", "7:30"));
@@ -71,7 +78,7 @@ public class PicoYplacaTest extends TestCase {
     }
 
     @Test
-    public void testThursday() {
+    public void testThursday() throws ParseException {
         // Thursday Restricted ending 7 and 8
         // Testing restriction day and time interval 1
         assertFalse("should fail can not drive at time ", carEndingSeven.canDriveAt("2022/06/09", "7:00"));
@@ -83,7 +90,7 @@ public class PicoYplacaTest extends TestCase {
         assertTrue("should pass", carEndingNine.canDriveAt("2022/06/23", "6:00"));
     }
 
-    public void testFriday() {
+    public void testFriday() throws ParseException {
         // Thursday Restricted ending 9 and 0
         // Testing restriction day and time interval 1
         assertFalse("should fail can not drive at time ", carEndingNine.canDriveAt("2022/06/10", "7:15"));
@@ -95,7 +102,7 @@ public class PicoYplacaTest extends TestCase {
         assertTrue("should pass", carEndingNine.canDriveAt("2022/06/10", "6:00"));
     }
 
-    public void testWeekend() {
+    public void testWeekend() throws ParseException {
         // No Restriction, any valid input should pass
         assertTrue("should pass ", carEndingOne.canDriveAt("2022/06/11", "7:15"));
         assertTrue("should pass", carEndingTwo.canDriveAt("2022/06/18", "17:00"));
@@ -109,16 +116,25 @@ public class PicoYplacaTest extends TestCase {
         assertTrue("should pass", carEndingCero.canDriveAt("2022/06/12", "6:00"));
     }
 
-    public void testInvalidInput() {
+    public void testInvalidInput() throws ParseException {
         // Invalid inputs
-        assertFalse("should not pass ", carEndingOne.canDriveAt("2022/06/11", null));
-        assertFalse("should not pass ", carEndingOne.canDriveAt(null, "7:15"));
-        assertFalse("should not pass ", carEndingOne.canDriveAt("2022/06/51", "37:15"));
-        assertFalse("should not pass ", carEndingOne.canDriveAt("2022/06/100", "7:15"));
-        assertFalse("should not pass ", carEndingOne.canDriveAt("2022/06/11", "57:15"));
+        Exception exception1 = assertThrows(IllegalArgumentException.class, () -> {
+            carEndingOne.canDriveAt("2022/06/11", null);
+        });
+
+        Exception exception2 = assertThrows(IllegalArgumentException.class, () -> {
+            carEndingOne.canDriveAt(null, "7:15");
+        });
+        Exception exception3 = assertThrows(IllegalArgumentException.class, () -> {
+            carEndingOne.canDriveAt("2022/06/51", "37:15");
+        });
+        Exception exception4 = assertThrows(IllegalArgumentException.class, () -> {
+            carEndingOne.canDriveAt("2022/06/100", "7:15");
+        });
+        Exception exception5 = assertThrows(IllegalArgumentException.class, () -> {
+            carEndingOne.canDriveAt("2022/06/11", "57:15");
+        });
     }
 
-    public void testPicoYplaca() {
-        assertFalse("should fail test", (1 == 0));
-    }
+
 }
