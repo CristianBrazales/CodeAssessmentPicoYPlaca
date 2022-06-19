@@ -1,12 +1,17 @@
 import junit.framework.TestCase;
 import org.junit.Test;
 
+import java.text.ParseException;
+
 import static org.junit.Assert.assertThrows;
 
 public class VehicleTest extends TestCase {
     private int[][] arr = {{5}, {1}, {1}, {2}, {2}, {3}, {3}, {4}, {4}, {5}};
     private String[][] hourPeriods = {{"7:00", "9:00"}, {"16:00", "19:30"}};
     private PicoYplaca restrictions = new PicoYplaca(arr, hourPeriods);
+
+    public VehicleTest() throws ParseException {
+    }
 
     @Test
     public void testForNonValidInputsForCarCreation() {
