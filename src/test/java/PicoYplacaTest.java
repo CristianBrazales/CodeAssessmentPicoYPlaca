@@ -18,7 +18,10 @@ import static org.junit.Assert.assertThrows;
  *
  *  viernes, 9 y 0.
  *
- *  Sábado, domingo y feriados, libre circulación vehicular las 24 horas del día.*/
+ *  Sábado, domingo y feriados, libre circulación vehicular las 24 horas del día.
+ *
+ *  Horario: 7:00 a 9:00 y de 16:00 a 19:30
+ * */
 
 public class PicoYplacaTest extends TestCase {
     private int[][] arr = {{5}, {1}, {1}, {2}, {2}, {3}, {3}, {4}, {4}, {5}};
